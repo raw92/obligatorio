@@ -13,41 +13,35 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    html, body{
-      height: 100%;
-    }
-
-    body {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color: #f5f5f5;
-    }
-
-    .signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="css/loginStyle.css">
+  
+  
 </head>
 
-<body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 16/08/2020) -> Punto 3 y 4.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+<body>
+  <div class="login-box">
+    <img class="avatar" src="img/icono.jpg" alt="icono-login">
+    <h1>Login</h1>
+    <form class="login" name="login">
+      <label for="username">Username</label>
+      <input id="userInput" type="text" placeholder="Enter username" required>
+
+      <label for="password">Password</label>
+      <input id="passInput" type="password" placeholder="Enter password" required>
+    
+      <input type="submit" value="Log in">
+
+      <a href="#">Forgot your password?</a><br>
+      <a href="#">Don't have an account?</a>
+
+    </form>
+
   </div>
+  
+</body>
 
   <script src="js/init.js"></script>
   <script src="js/login.js"></script>
+  
 </body>
 </html>

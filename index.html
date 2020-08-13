@@ -104,6 +104,12 @@
     </footer>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <!--Redirije a login si no hay usuario logeado-->
+    <script>
+      if( !sessionStorage.getItem('usuarioLogeado') ){
+       window.location = 'login.html';
+      }
+    </script>
     <script src="js/init.js"></script>
   </body>
 </html>

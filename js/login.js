@@ -2,5 +2,20 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+    form = document.forms[0];
 
+    form.addEventListener('submit', onSubmit);
 });
+
+
+function onSubmit(evento){
+    evento.preventDefault();
+
+    user = document.getElementById('userInput').value;
+    pass = document.getElementById('passInput').value;
+
+    if(user !== "" && pass !== ""){
+        sessionStorage.setItem('usuarioLogeado', user);
+        window.location = "index.html";
+    }
+}
