@@ -11,11 +11,23 @@ document.addEventListener("DOMContentLoaded", function(e){
 function onSubmit(evento){
     evento.preventDefault();
 
-    user = document.getElementById('userInput').value;
-    pass = document.getElementById('passInput').value;
+    var user = document.getElementById('userInput').value;
+    var pass = document.getElementById('passInput').value;
 
     if(user !== "" && pass !== ""){
-        sessionStorage.setItem('usuarioLogeado', user);
+        localStorage.setItem("usuarioLogeado", user);
         window.location = "index.html";
     }
+    //alert(localStorage.getItem("usuarioLogeado"));
+    //showUser();
+
+}
+
+function showUser(){
+    var nombreUsuario = localStorage.getItem("usuarioLogeado");
+
+    document.getElementById("mostrarUsuario").innerHTML = nombreUsuario;
+    //alert(nombreUsuario);
+    
+
 }

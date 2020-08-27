@@ -23,6 +23,7 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <a class="py-2 d-none d-md-inline-block" href="#" id="mostrarUsuario"></a>
     </div>
   </nav>
 
@@ -39,13 +40,13 @@
         <div class="col text-right">
           <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
             <label class="btn btn-light active" id="sortAsc">
-              <input type="radio" name="options" autocomplete="off" checked>A-Z
+              <input type="radio" name="options" autocomplete="off" checked>$ ▲
             </label>
             <label class="btn btn-light" id="sortDesc">
-              <input type="radio" name="options" autocomplete="off">Z-A
+              <input type="radio" name="options" autocomplete="off">$ ▼
             </label>
             <label class="btn btn-light" id="sortByCount">
-              <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
+              <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Rel.
             </label>
           </div>
         </div>
@@ -103,6 +104,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script>document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem("usuarioLogeado");</script>
 </body>
 
 </html>
