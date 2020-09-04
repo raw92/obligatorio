@@ -41,15 +41,40 @@ var getJSONData = function(url){
 }
 
 
-
-
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
   
-  
  
 
 
 });
+
+
+//FUNCIONES DEL DROPDOWN
+function dropdownShow() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+//Cierra el dropdown si el usuario clickea fuera
+window.onclick = function(event) {
+  if (!event.target.matches('#mostrarUsuario')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+//Funcion para desconectarse
+function logOut(){
+  
+  localStorage.clear("usuarioLogeado");
+  window.location = "login.html";
+}
+

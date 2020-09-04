@@ -27,7 +27,7 @@ function showUser(){
     var nombreUsuario = localStorage.getItem("usuarioLogeado");
 
     document.getElementById("mostrarUsuario").innerHTML = nombreUsuario;
-    //alert(nombreUsuario);
+    
     
 
 }

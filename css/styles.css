@@ -140,3 +140,78 @@ a.custom-card:hover {
   color: orange;
 }
 
+
+.puntuacion {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  }
+
+  .puntuacion input {
+  position: absolute;
+  top: -100px;
+  }
+
+
+  .puntuacion label {
+  float: right;
+  color: #c1b8b8;
+  font-size: 30px; 
+  }
+
+  .puntuacion label:hover,
+  .puntuacion label:hover ~ label,
+  .puntuacion input:checked ~ label {
+  color:orange;
+  }
+
+
+  #enviarComment{
+    background: rgb(86, 134, 238);
+    color: white;
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 80px;
+    font-size: 18px;
+    border-radius: 20px;
+    
+}
+
+#enviarComment:hover{
+    background: linear-gradient(#3d42c2, #373bae, #31349b)
+}
+
+
+
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown link) */
+.show {display:block;}
