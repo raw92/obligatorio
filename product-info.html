@@ -9,8 +9,8 @@
   <title>eMercado - Todo lo que busques está aquí</title>
   <!--funcion que redirije al login si no hay usuario logeado-->
   <script>
-    if( !localStorage.getItem('usuarioLogeado') ){
-     window.location = 'login.html';
+    if (!localStorage.getItem('usuarioLogeado')) {
+      window.location = 'login.html';
     }
   </script>
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -27,13 +27,11 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-
       <div class="dropdown">
         <a onclick="dropdownShow()" class="py-2 d-none d-md-inline-block" href="#" id="mostrarUsuario"></a>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#">Profile</a>
-          <a href="#">Settings</a>
+          <a href="my-profile.html">Mi perfil</a>
+          <a href="cart.html">Mi Carrito</a>
           <a href="#" onclick="logOut()">Log Out</a>
         </div>
       </div>
@@ -50,35 +48,64 @@
       <h3 id="productName"></h3>
       <hr class="my-3">
       <dl>
-        <dt>Descripción</dt>
+
         <dd>
-          <p id="productDescription"></p>
+          <div id="contenedorCarousel" style="margin: 0 150px 0 150px">
+            <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+              <ol id="indicatorsCarousel" class="carousel-indicators">
+
+              </ol>
+              <div id="innerCarousel" class="carousel-inner">
+
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+          <hr>
         </dd>
+          <dt>Descripción</dt>
+          <dd>
+            <p id="productDescription"></p>
+          </dd>
 
-        <dt>Costo</dt>
-        <dd>
-          <p id="productCost"></p>
-        </dd>
+          <dt>Costo</dt>
+          <dd>
+            <p id="productCost"></p>
+          </dd>
 
-        <dt>Categoria</dt>
-        <dd>
-          <p id="productCategory"></p>
-        </dd>
+          <dt>Categoria</dt>
+          <dd>
+            <p id="productCategory"></p>
+          </dd>
 
-        <dt>Cantidad vendidos</dt>
-        <dd>
-          <p id="productSoldCount"></p>
-        </dd>
-
-
+          <dt>Cantidad vendidos</dt>
+          <dd>
+            <p id="productSoldCount"></p>
+          </dd>
+        
+        <br>
         <dt>Imágenes ilustrativas</dt>
         <dd>
           <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
           </div>
         </dd>
       </dl>
-      <br>
 
+
+      <dt>Productos Realacionados</dt>
+      <dd>
+        <div class="row text-center text-lg-left pt-2" id="productosRelacionados"></div>
+      </dd>
+
+
+      <br>
       <h3>Comentarios</h3>
       <hr class="my-3">
       <div>

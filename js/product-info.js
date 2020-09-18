@@ -20,6 +20,34 @@ function showImagesGallery(array) {
     }
 }
 
+function showCarousel(array) {
+    let htmlImages = "";
+    let htmlIndicators = "";
+
+    for (i = 0; i < array.length; i++) {
+        let imageSrc = array[i];
+        if(i==0){
+            htmlImages += `
+            <div class="carousel-item active">
+             <img class="d-block w-100" src="${imageSrc}" alt="">
+            </div>
+            `;
+            htmlIndicators += `<li data-target="#carouselExampleControls" data-slide-to="${i}" class="active"></li>`;
+        }else{
+            htmlImages+= `
+            <div class="carousel-item">
+             <img class="d-block w-100" src="${imageSrc}" alt="">
+            </div>
+            `;
+            htmlIndicators+= `
+            <li data-target="#carouselExampleControls" data-slide-to="${i}"></li>
+            `;
+        }
+    }
+    document.getElementById("innerCarousel").innerHTML = htmlImages;
+    document.getElementById("indicatorsCarousel").innerHTML = htmlIndicators;
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -42,6 +70,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            showCarousel(product.images);
+
+            getJSONData(PRODUCTS_URL).then(function (resultObj) {
+                if (resultObj.status === "ok") {
+                    let products = resultObj.data;
+
+                    let htmlProducto = "";
+                    product.relatedProducts.forEach(function (productIndex) {
+                        let productoRelacionado = products[productIndex];
+                        htmlProducto += `
+                        <div class="card" style="width: 18rem; margin: 20px">
+                            <img src="${productoRelacionado.imgSrc}" class="card-img-top    " alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">${productoRelacionado.name}</h5>
+                                <p class="card-text">${productoRelacionado.description}</p>
+                                <a href="" class="btn btn-link">Ver</a>
+                            </div>
+                        </div>`
+                    })
+                    document.getElementById("productosRelacionados").innerHTML = htmlProducto;
+
+                }
+            })
+
         }
     });
 });
@@ -52,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             prodComments = resultObj.data;
 
 
-          showComments(prodComments);
+            showComments(prodComments);
 
         }
     });
@@ -60,10 +112,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 //Funcion para mostrar los comentarios
-function showComments(array){
+function showComments(array) {
     let htmlContentToAppend = "";
 
-    for (let i=0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         let comment = array[i];
 
         htmlContentToAppend += `<dt>` + comment.user + `</dt> 
@@ -71,7 +123,7 @@ function showComments(array){
         <dd>` + comment.dateTime + `</dd>
         <dd>` + comment.description + `</dd>
         <hr class=my-3>`
-        
+
     }
 
     document.getElementById("userComments").innerHTML = htmlContentToAppend;
@@ -81,11 +133,11 @@ function showComments(array){
 function starScore(score) {
     let puntuacion = "";
 
-    for(let i=0; i < 5; i++){
-        if(i < score){
+    for (let i = 0; i < 5; i++) {
+        if (i < score) {
             puntuacion += `<span class="fa fa-star checked"></span>`;
         }
-        else{
+        else {
             puntuacion += `<span class="fa fa-star"></span>`;
         }
     }
@@ -96,21 +148,21 @@ function starScore(score) {
 //declaro la variable score
 let score = 0;
 //funciona para enviar el nuevo comentario y agregarlo al array de comentarios y mostrarlo nuevamente completo
-function enviarComentario(){
+function enviarComentario() {
     let user = localStorage.getItem("usuarioLogeado");
     let fecha = new Date();
     let dateTime = fecha.getFullYear() + "-" + fecha.getMonth() + "-" + fecha.getDay() + " " + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
     let description = document.getElementById("cajaComentarios").value;
 
-    
-    prodComments.push({user, dateTime, description, score})
+
+    prodComments.push({ user, dateTime, description, score })
     showComments(prodComments);
 
 }
 
 
 //funcion para setear el valor del producto y guardarlo en score
-function puntuacionComentario(valor){
+function puntuacionComentario(valor) {
     score = valor;
 }
 
