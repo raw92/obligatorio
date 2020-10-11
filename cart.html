@@ -16,6 +16,8 @@
   </script>
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -49,21 +51,139 @@
         <a onclick="dropdownShow()" class="py-2 d-none d-md-inline-block" href="#" id="mostrarUsuario"></a>
         <div id="myDropdown" class="dropdown-content">
           <a href="my-profile.html">Mi perfil</a>
-          <a href="cart.html">Mi Carrito</a>
+          <a href="cart.html">Mi Carrito <span id="badgeCarrito" class="badge badge-danger"></span></a>
           <a href="#" onclick="logOut()">Log Out</a>
         </div>
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 11/10/2020) y Entrega 6 (Fecha de entrega:
-        25/10/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+  <div class="container">
+    <div class="text-center p-4">
+      <h2>Carrito de compras</h2>
+      <p class="lead">Articulos a comprar</p>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+        <div class="row">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Costo</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="bodyTablaCarrito">
+                
+            </tbody>
+          </table>
+        </div>
+        <hr class="mb-4">
+        <h4 class="mb-3">Dirección de envío</h4>
+        <form class="needs-validation" id="cart-info" onsubmit="alert('Gracias por su compra!')">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="nombreCalle">Calle</label>
+              <input type="text" class="form-control" id="calleDireccion" placeholder="" required="" value="">
+              <div class="invalid-feedback">
+                Ingrese una calle
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="numeroPuerta">Numero de puerta</label>
+              <input type="text" class="form-control" id="numeroPuertaDireccion" placeholder="" required="" value="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="esquinaCalle">Esquina</label>
+              <input type="text" class="form-control" id="esquinaDireccion" placeholder="" required="" value="">
+              <div class="invalid-feedback">
+                Ingresa una esquina
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="pais">Pais</label>
+              <input type="text" class="form-control" id="paisEnvio" placeholder="" required="" value="">
+              <div class="invalid-feedback">
+                Ingresa un pais
+              </div>
+            </div>
+          </div>
+
+          <hr class="mb-4">
+          <h5 class="mb-3">Tipo de envío</h5>
+          <h7 class="mb-3" style="color: grey;">El costo del envio sera porcentual en base al costo total de la compra realizada.</h7>
+
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="premiumradio" name="tipoEnvio" type="radio" class="custom-control-input" checked=""
+                required="" onclick="calcularCostoCarrito()">
+              <label class="custom-control-label" for="premiumradio">Premium 2 a 5 dias (15%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="expressradio" name="tipoEnvio" type="radio" class="custom-control-input" required="" onclick="calcularCostoCarrito()">
+              <label class="custom-control-label" for="expressradio">Express 5 a 8 dias (7%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="estandarradio" name="tipoEnvio" type="radio" class="custom-control-input" required="" onclick="calcularCostoCarrito()">
+              <label class="custom-control-label" for="estandarradio">Standar 12 a 15 dias (5%)</label>
+            </div>
+
+          </div>
+          <hr class="mb-4">
+          <h4 class="mb-3">Costos</h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+              </div>
+              <span class="text-muted" id="costoProductos">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Costo de envio</h6>
+              </div>
+              <span class="text-muted" id="costoEnvioProductos">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (U$S)</span>
+              <strong id="totalCostText">-</strong>
+            </li>
+          </ul>
+
+          <hr class="mb-4">
+          <h5 class="mb-3">Metodo de pago</h5>
+          <div class="d-block my-3">
+            <select class="browser-default custom-select" name="selectMetodoPago" id="selectMetodoPago" required>
+              <option value="" disabled selected>Tipo de pago</option>
+              <option value="">Tarjeta de credito</option>
+              <option value="">Tarjeta de debito</option>
+              <option value="">Paypal</option>
+              <option value="">Efectivo</option>
+              <option value="">Transferencia Bancaria</option>
+            </select>
+
+          </div>
+
+
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
+        </form>
+      </div>
     </div>
   </div>
+
+  <footer class="text-muted">
+    <div class="container">
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -72,6 +192,13 @@
       <div></div>
     </div>
   </div>
+
+
+
+
+
+
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
