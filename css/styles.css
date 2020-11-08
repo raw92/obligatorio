@@ -216,4 +216,8 @@ a.custom-card:hover {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown link) */
 .show {display:block;}
 
+.fa-trash-alt{
+  color: grey;
+  cursor: pointer;
+}
 
