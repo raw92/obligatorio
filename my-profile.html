@@ -55,14 +55,87 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+
+  <!--//////////////////////////////////////////////////////-->
+  <div class="container">
+    <div class="text-center p-4">
+      <h2>Mi perfil</h2>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Datos personales</h4>
+        <hr>
+        <br>
+        <form class="needs-validation" id="perfil-info">
+          
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="name">Nombre<span style="color: red;">*</span></label>
+              <input type="text" class="form-control" id="userName" placeholder="" value="">
+              <div class="invalid-feedback">
+                Ingresa un nombre
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="name2">Segundo nombre</label>
+              <input type="text" class="form-control" id="userName2" placeholder="" value="">
+            </div>
+          </div>
+         
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="apellido">Apellido<span style="color: red;">*</span></label>
+              <input type="text" class="form-control" id="userLastName" placeholder="" value="">
+              <div class="invalid-feedback">
+                Ingresa un apellido
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="apellido2">Segundo Apellido</label>
+              <input type="text" class="form-control" id="userLastName2" placeholder="" value="">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="edad">Edad<span style="color: red;">*</span></label>
+              <input type="number" class="form-control" id="userAge" placeholder="" value="">
+              <div class="invalid-feedback">
+                La edad debe ser mayor a 18.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="email">E-mail<span style="color: red;">*</span></label>
+              <input type="text" id="userEmail" class="form-control" placeholder="" value="">
+              <div class="invalid-feedback">
+                Ingresa un e-mail válido.
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="telefono">Teléfono de contacto<span style="color: red;">*</span></label>
+              <input type="text" class="form-control" id="userTel" placeholder="" value="">
+              <div class="invalid-feedback">
+                Ingrese número de teléfono válido.
+              </div>
+            </div>
+          </div>
+          
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg" type="submit">Guardar</button>
+        </form>
+      </div>
     </div>
   </div>
+<br>
+
+  <!--////////////////////////////////////////////////////////-->
+
+
+
   <footer class="text-muted bg-light">
     <div class="container">
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>

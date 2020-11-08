@@ -13,9 +13,19 @@ function onSubmit(evento){
 
     var user = document.getElementById('userInput').value;
     var pass = document.getElementById('passInput').value;
+    let usuarioInfo = {
+        name: '',
+        secondName: '',
+        lastName: '',
+        secondLastName: '',
+        age: '',
+        email: '',
+        phone: ''
+    }
 
     if(user !== "" && pass !== ""){
         localStorage.setItem("usuarioLogeado", user);
+        localStorage.setItem("userInfo", JSON.stringify(usuarioInfo));
         window.location = "index.html";
     }
     //alert(localStorage.getItem("usuarioLogeado"));

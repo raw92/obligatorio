@@ -78,3 +78,4 @@ function logOut(){
   window.location = "login.html";
 }
 
+

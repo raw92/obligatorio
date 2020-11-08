@@ -9,8 +9,8 @@
   <title>eMercado - Todo lo que busques está aquí</title>
   <!--funcion que redirije al login si no hay usuario logeado-->
   <script>
-    if( !localStorage.getItem('usuarioLogeado') ){
-     window.location = 'login.html';
+    if (!localStorage.getItem('usuarioLogeado')) {
+      window.location = 'login.html';
     }
   </script>
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -84,8 +84,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="list-group" id="prod-list-container">
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row" id="prod-list-container">
+          </div>
         </div>
       </div>
     </div>
