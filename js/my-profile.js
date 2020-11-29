@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //Se obtiene el formulario de publicación de producto
     var userDataForm = document.getElementById("perfil-info");
     
-    
+    //traigo el objeto de user info del localstorage y lo parseo para volver al tipo de dato objeto ya que
+    //era texto en el localstorage
     var infoUsuario = JSON.parse(localStorage.getItem("userInfo")); 
     
-    
+    //seteo los datos del usuario y los muestro la primera ves son siempre vacios
     let userName = document.getElementById("userName");
     document.getElementById("userName").value = infoUsuario.name;
     let userLastName = document.getElementById("userLastName");
@@ -23,11 +24,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("userName2").value = infoUsuario.secondName;
     let userSecondLastName = document.getElementById("userLastName2");
     document.getElementById("userLastName2").value = infoUsuario.secondLastName;
-
+    
     //Se agrega una escucha en el evento 'submit' que será
-    //lanzado por el formulario cuando se seleccione 'Vender'.
+    //lanzado por el formulario cuando se seleccione 'guardar'.
     userDataForm.addEventListener("submit", function (e) {
-
+        //guardo los datos que hay en los inputs
         infoUsuario.name = document.getElementById("userName").value;
         infoUsuario.lastName = document.getElementById("userLastName").value;
         infoUsuario.age = document.getElementById("userAge").value;
@@ -47,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         userSecondLastName.classList.remove('is-invalid');
 
         //Se realizan los controles necesarios,
-        //En este caso se controla que se haya ingresado el nombre y categoría.
         //Consulto por el nombre
         if (userName.value === "") {
             userName.classList.add('is-invalid');
@@ -79,8 +79,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
 
         if (!infoMissing) {
-            //Aquí ingresa si pasó los controles, irá a enviar
-            //la solicitud para crear la publicación.
+            //Aquí ingresa si pasó los controles
+            //y guarda en localstorage los nuevos datos del usuario
+            //nuevamente uso stringify para cambiar a texto los datos y poder guardarlos y mustra mensaje
             
             localStorage.setItem("userInfo", JSON.stringify(infoUsuario));
             let msgToShowHTML = document.getElementById("resultSpan");

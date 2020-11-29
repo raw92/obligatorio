@@ -8,6 +8,7 @@ var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
 
+//funcion para ordenar los productos 
 function sortProducts(criteria, array) {
     let result = [];
     if (criteria === ORDER_ASC_BY_PRICE) {
@@ -38,7 +39,7 @@ function sortProducts(criteria, array) {
 
 
 
-
+//muestro grilla de productos,  recorro array de productos
 function showProductsList() {
     let htmlContentToAppend = "";
     for (let i = 0; i < productosArray.length; i++) {
@@ -46,7 +47,7 @@ function showProductsList() {
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(producto.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.cost) <= maxCount))) {
-
+            //creo el contenido para enviar al html y mostrar los productos con sus respectivos datos    
             htmlContentToAppend += `
             <div class="col-md-4">
             <a href="product-info.html" class="card mb-4 shadow-sm custom-card">
@@ -63,13 +64,14 @@ function showProductsList() {
             
         `
         }
+        //mando al contenedor del html la info. para mostrar.
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
 
 
     }
 
 }
-
+//ordena y vuelve a mostrar la lista de productos
 function sortAndShowProducts(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
 
@@ -88,12 +90,14 @@ function sortAndShowProducts(sortCriteria, productsArray) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
+    //toma los datos del json y despues ejecuta la funcion
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        //si todo esta correcto ejecuta la siguiente funcion para ordenar y mostrar los prods.
         if (resultObj.status === "ok") {
             sortAndShowProducts(ORDER_ASC_BY_PRICE, resultObj.data);
         }
     });
-
+    //uso listener para darle funcionabilidad al boton de filtrado por asc, desc, y count.
     document.getElementById("sortAsc").addEventListener("click", function () {
         sortAndShowProducts(ORDER_ASC_BY_PRICE);
     });
@@ -105,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("sortByCount").addEventListener("click", function () {
         sortAndShowProducts(ORDER_BY_PROD_SOLD_COUNT);
     });
-
+    //agrego listener al limpiar filtro y remuevo los filtros previamente aplicados.
     document.getElementById("clearRangeFilter").addEventListener("click", function () {
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";

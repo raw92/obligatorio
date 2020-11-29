@@ -15,7 +15,7 @@
   <link href="css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="css/loginStyle.css">
 
-  <!--GOOGLE LOGIN-->
+  <!--GOOGLE LOGIN etiquetas meta necesarias brindadas por google-->
   <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id"
     content="898528084043-vjadi7agnu3dkcr7u596lk7lh659csef.apps.googleusercontent.com">
@@ -24,11 +24,12 @@
 </head>
 
 <body>
-
+<!--defino caja de login dando estilos en css usando clase-->
   <div class="login-box">
-
+<!--defino la imagen de login-->
     <img class="avatar" src="img/icono.jpg" alt="icono-login">
     <h1>Login</h1>
+    <!--creo form para mandar dicha informacion y guardarla en localstorage-->
     <form class="login" name="login">
       <label for="username">Username</label>
       <input id="userInput" type="text" placeholder="Enter username" required>
@@ -38,6 +39,7 @@
 
       <input type="submit" value="Log in">
       <br>
+      <!--div brindado por google para la autenticacion de usuario-->
       <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
 
@@ -45,7 +47,7 @@
       <a href="#">Don't have an account?</a>
 
     </form>
-
+<!--Scritp para signin con google-->
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -60,12 +62,21 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+
+        //El siguiente codigo esta comentado debido a que no logre hacer que el usuario se pueda hacer log out
+        //con google, quedo funcionando ya que ingresa, pero no puedo desconectarse. 
+
         //localStorage.setItem("usuarioLogeado", profile.getName());
         //window.location = "index.html";
         
       }
     </script>
-    <!-- <a href="#" onclick="signOut();">Sign out</a>
+    
+    <!-- 
+    Dicha funcion deberia de funcionar para desconectar al usuario, pero desconecta todas las cuentas de google
+    debido a eso opte por no utilizarla
+      
+    <a href="#" onclick="signOut();">Sign out</a>
     <script>
       function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();

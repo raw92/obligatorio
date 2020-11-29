@@ -21,13 +21,14 @@
 </head>
 
 <body>
+  <!--menu principal-->
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      
+      <!--submenu-->
       <div class="dropdown">
         <a onclick="dropdownShow()" class="py-2 d-none d-md-inline-block" href="#" id="mostrarUsuario"></a>
         <div id="myDropdown" class="dropdown-content">
@@ -94,6 +95,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/category-info.js"></script>
+  <!--muestra nombre de usuario-->
   <script>document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem("usuarioLogeado");</script>
 </body>
 

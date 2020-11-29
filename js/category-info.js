@@ -1,5 +1,5 @@
 var category = {};
-
+//muestra las imagenes de las categorias
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";

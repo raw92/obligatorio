@@ -19,7 +19,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
-
+<!--menu principal de navegacion-->
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -28,6 +28,7 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div class="dropdown">
+        <!--submenu -->
         <a onclick="dropdownShow()" class="py-2 d-none d-md-inline-block" href="#" id="mostrarUsuario"></a>
         <div id="myDropdown" class="dropdown-content">
           <a href="my-profile.html">Mi perfil</a>
@@ -48,7 +49,7 @@
       <h3 id="productName"></h3>
       <hr class="my-3">
       <dl>
-
+        <!--Creo el carousel para mostrar imagenes del producto en cuestion-->
         <dd>
           <div id="contenedorCarousel" style="margin: 0 150px 0 150px">
             <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
@@ -58,6 +59,7 @@
               <div id="innerCarousel" class="carousel-inner">
 
               </div>
+              <!--creo opcion manual para adelantar o ir hacia atras en dichas fotos-->
               <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -70,6 +72,7 @@
           </div>
           <hr>
         </dd>
+        <!--Coloco info del producto-->
           <dt>Descripción</dt>
           <dd>
             <p id="productDescription"></p>
@@ -104,7 +107,7 @@
         <div class="row text-center text-lg-left pt-2" id="productosRelacionados"></div>
       </dd>
 
-
+      <!--Se muestran los comentarios sobre dicho producto-->
       <br>
       <h3>Comentarios</h3>
       <hr class="my-3">
@@ -115,10 +118,13 @@
       </div>
 
       <br>
+      <!--Se permite agregar comentario al usuario y puntuar con formato estrellas-->
       <h3>Agregar Comentario</h3>
       <div>
         <textarea name="" id="cajaComentarios" placeholder="Escriba aquí su comentario" cols="60" rows="5"></textarea>
         <br>
+        <!--creo radio button con formato estrellas para calificar que acceden a la funcion dado a continuacion
+        la cual realizara el proceso necesario-->
         <div class="puntuacion">
           <input id="radio1" type="radio" name="estrellas" value="5" onclick="puntuacionComentario(value)">
           <!--
@@ -142,6 +148,7 @@
 
         </div>
         <br>
+        <!--boton para enviar el comentario y agregarlo a los comentarios del producto-->
         <button id="enviarComment" onclick="enviarComentario()">Enviar</button>
       </div>
       <br>
@@ -172,6 +179,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <!--Muestra el usuario usando la info del localstorage-->
   <script>document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem("usuarioLogeado");</script>
 </body>
 

@@ -37,7 +37,7 @@
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
-
+<!--Menu principal-->
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -46,6 +46,7 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div class="dropdown">
+        <!--submenu-->
         <a onclick="dropdownShow()" class="py-2 d-none d-md-inline-block" href="#" id="mostrarUsuario"></a>
         <div id="myDropdown" class="dropdown-content">
           <a href="my-profile.html">Mi perfil</a>
@@ -57,7 +58,7 @@
   </nav>
 
 
-  <!--//////////////////////////////////////////////////////-->
+  <!--Contenedor de datos de mi perfil-->
   <div class="container">
     <div class="text-center p-4">
       <h2>Mi perfil</h2>
@@ -67,8 +68,8 @@
         <h4 class="mb-3">Datos personales</h4>
         <hr>
         <br>
+        <!--creo form para la info del perfil-->
         <form class="needs-validation" id="perfil-info">
-          
           <div class="row">
             <div class="col-md-4 mb-3">
               <label for="name">Nombre<span style="color: red;">*</span></label>
@@ -123,7 +124,7 @@
               </div>
             </div>
           </div>
-          
+          <!--boton guardar -->
           <hr class="mb-4">
           <button class="btn btn-primary btn-lg" type="submit">Guardar</button>
         </form>
@@ -161,6 +162,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
+  <!--muestro el nombre del usuario-->
   <script>document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem("usuarioLogeado");</script>
 </body>
 

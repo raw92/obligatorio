@@ -40,7 +40,7 @@
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
-
+<!--Menu principal-->
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -49,6 +49,7 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <div class="dropdown">
+        <!--submenu-->
         <a onclick="dropdownShow()" class="py-2 d-none d-md-inline-block" href="#" id="mostrarUsuario"></a>
         <div id="myDropdown" class="dropdown-content">
           <a href="my-profile.html">Mi perfil</a>
@@ -64,11 +65,13 @@
       <h2>Carrito de compras</h2>
       <p class="lead">Articulos a comprar</p>
     </div>
+    <!--creo tabla para mostrar la info. de los productos dentro del carrito-->
     <div class="row justify-content-md-center">
       <div class="col-md-8 order-md-1">
         <div class="row">
           <table class="table">
             <thead class="thead-dark">
+              <!--Titulos de la tabla-->
               <tr>
                 <th scope="col" style="text-align: center;">#</th>
                 <th scope="col" style="text-align:center">Nombre</th>
@@ -78,13 +81,16 @@
                 <th scope="col" style="text-align: center">#</th>
               </tr>
             </thead>
+            <!--cuerpo de la tabla donde cargaremos los items a comprar-->
             <tbody id="bodyTablaCarrito">
 
             </tbody>
           </table>
         </div>
+        <!--informacion de envio de dichos prods.-->
         <hr class="mb-4">
         <h4 class="mb-3">Dirección de envío</h4>
+        <!--creo form para enviar a posterior dicha info. envio una alerta al usuario en caso positivo de compra-->
         <form  class="needs-validation" id="cart-info"
           onsubmit="alert('E-Mercado: Gracias por su compra!')">
           <div class="row">
@@ -121,7 +127,9 @@
           <h5 class="mb-3">Tipo de envío</h5>
           <h7 class="mb-3" style="color: grey;">El costo del envio sera porcentual en base al costo total de la compra
             realizada.</h7>
-
+            <!--Tipo de envio utilice un radio button el cual siempre esta por defecto el premium
+            dependiendo cual elija el usuario, se ejecuta una funcion la cual calcula en tiempo el costo del carrito
+          incluyendo el costo del envio-->
           <div class="d-block my-3">
             <div class="custom-control custom-radio">
               <input id="premiumradio" name="tipoEnvio" type="radio" class="custom-control-input" checked="" required=""
@@ -140,6 +148,7 @@
             </div>
 
           </div>
+          <!--despliego los costos del carrito por separado -->
           <hr class="mb-4">
           <h4 class="mb-3">Costos</h4>
           <ul class="list-group mb-3">
@@ -160,7 +169,7 @@
               <strong id="totalCostText">-</strong>
             </li>
           </ul>
-
+          <!--Selecciono el metodo de pago-->
           <hr class="mb-4">
           <h5 class="mb-3">Metodo de pago</h5>
           <div class="d-block my-3">
@@ -169,12 +178,13 @@
 
             <div id="metodoPago" class="text-danger">Seleccione un metodo de pago</div>
             <br>
-            <!-- Button trigger modal -->
+            <!-- Button trigger modal boton para seleccionar metodo de pago, al clickearlo despliega modal con opciones-->
             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#pagoModal">
               Metodo de pago
             </button>
 
-            <!-- Modal -->
+            <!-- Modal metodo de pago
+            al presionar tanto el boton de X como el confirmar comprueba los datos-->
             <div class="modal fade" id="pagoModal" tabindex="-1" aria-labelledby="pagoModalLabel" aria-hidden="true" data-backdrop="static">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -185,6 +195,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
+                    <!--select de formas de pago-->
                     <select class="browser-default custom-select" name="selectMetodoPago" id="selectMetodoPago"
                       required>
                       <option value="" disabled selected>Tipo de pago</option>
@@ -203,7 +214,7 @@
               </div>
             </div>
 
-            <!-- Modal 2.0 -->
+            <!-- Modal 2.0 de error en caso que falte info en el metodod de pago-->
             <div class="modal fade" id="errorPagoModal" tabindex="-1" aria-labelledby="errorPagoModalLabel"
               aria-hidden="true">
               <div class="modal-dialog">
@@ -230,6 +241,7 @@
 
 
           <hr class="mb-4">
+          <!--valido de forma manual el metodo de pago-->
           <button class="btn btn-primary btn-lg" type="submit" onclick="validarMetodoPago()">Comprar</button>
         </form>
       </div>
@@ -263,6 +275,7 @@
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <!--muestro el nombre del usuario-->
   <script>document.getElementById("mostrarUsuario").innerHTML = localStorage.getItem("usuarioLogeado");</script>
 </body>
 

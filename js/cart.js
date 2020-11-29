@@ -6,10 +6,12 @@ var articulosPrecargados = [];
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
+    //cargo el json del cart info y luego ejecuto una funcion en caso que este correcto
     getJSONData(CART_INFO_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
+            //guardo los articulos del json precargado en la variable
             articulosPrecargados = resultObj.data;
-
+            
             mostrarArticulos();
             calcularCostoCarrito();
             modificarItemCarrito("cant0", 0);
@@ -17,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 });
 
-
+//muestra los articulos del carrito
 function mostrarArticulos() {
 
     var htmlAppEnd = "";
-
+    //recorro los articulos precargados y muestro la info del mismo
     for (var i = 0; i < articulosPrecargados.articles.length; i++) {
         articulo = articulosPrecargados.articles[i];
 
@@ -37,26 +39,29 @@ function mostrarArticulos() {
     `
 
     }
+    //luego de guardar su info en la variable lo muestro x html
     document.getElementById("bodyTablaCarrito").innerHTML = htmlAppEnd;
 
 
 }
+//elimina un item del carrito usando la pos.
  function borrarItem(pos){
+     //le digo que en dicha pos me borre 1 objeto unicamente
     articulosPrecargados.articles.splice(pos, 1);
-
+    //luego muestro, calculo
     mostrarArticulos();
     calcularCostoCarrito();
     modificarItemCarrito("cant0", 0);
     cantidadItemsCarrito();
  }
 
-
+//calculo el costo del carrito
 function calcularCostoCarrito() {
     let costoProductosCarrito = 0;
     let costoEnvio = 0;
     let total = 0;
 
-
+    //recorro articulos precargados y calculo en base a la currency del prod. y calculo costo de los prod del carrito
     for (let i = 0; i < articulosPrecargados.articles.length; i++) {
         articulo = articulosPrecargados.articles[i];
         if (articulo.currency === "USD") {
@@ -69,6 +74,7 @@ function calcularCostoCarrito() {
     let envioExpress = document.getElementById("expressradio").checked;
     let envioEstandar = document.getElementById("estandarradio").checked;
 
+    //dependiendo el envio seleccionado calcula el costo del mismo.
     if (envioPremium) {
         costoEnvio = (costoProductosCarrito * 15) / 100;
     } else if (envioExpress) {
@@ -76,7 +82,7 @@ function calcularCostoCarrito() {
     } else if (envioEstandar) {
         costoEnvio = (costoProductosCarrito * 5) / 100;
     }
-
+    //costo prod de carrito + costo de envio y los muestros independientes
     total = costoProductosCarrito + costoEnvio;
     document.getElementById("costoEnvioProductos").innerHTML = "USD " + costoEnvio;
     document.getElementById("costoProductos").innerHTML = "USD " + costoProductosCarrito;
@@ -84,31 +90,38 @@ function calcularCostoCarrito() {
 }
 
 
-
+//modifica el item del carrito, setea de forma predeterminada una primera ves en base a la info del json
+//y luego modificia si cambia la cantidad de los productos en base a su id y su pos.
 function modificarItemCarrito(id, pos) {
+    //toma el valor del input 
     let cantArticulos = document.getElementById(id).value;
+    //usa la pos para sacar el costo por unidad
     let precioUnidad = articulosPrecargados.articles[pos].unitCost;
+    //usa la pos para sacar la moneda del producto
     let moneda = articulosPrecargados.articles[pos].currency;
+    //modifica la cantidad de articulos del mismo
     articulosPrecargados.articles[pos].count = cantArticulos;
-
+    
+    //validacion por si el producto llegara a ser vacio o menor a 1 lo coloca en un minimo de 1
     if (cantArticulos < 1 || cantArticulos == "") {
         cantArticulos = 1;
         document.getElementById(id).value = cantArticulos;
         articulosPrecargados.articles[pos].count = cantArticulos;
     }
-
+    //si la currency esta en uyu lo convierte en dolares
     if (moneda === "UYU") {
         let converDolares = precioUnidad / 40;
         document.getElementById("costo" + pos).innerHTML = "USD " + cantArticulos * converDolares;
     } else {
         document.getElementById("costo" + pos).innerHTML = "USD " + cantArticulos * precioUnidad;
     }
-
+    //recalcula el costo del carrito
     calcularCostoCarrito();
+    //muestra cantidad de items del carrito
     cantidadItemsCarrito();
 
 }
-
+//recorre array de articulos del carrito para mostrar una badge de la cantidad de items presentes en el mismo.
 function cantidadItemsCarrito() {
     var cantidad = 0;
 
@@ -121,7 +134,7 @@ function cantidadItemsCarrito() {
 }
 
 
-
+//Validacion de metodo de pago, si no se selecciono ninguna opcion del select tira error por ventana modal.
 function validarMetodoPago() {
     let valorSelect = document.getElementById("selectMetodoPago").value;
 
@@ -132,7 +145,10 @@ function validarMetodoPago() {
 }
 
 
-
+//Agrego un evento listener al selectMetodoPago el cual al cambiar se ejecuta
+//y toma el valor del select, en caso que este sea 1 crea los inputs y los muestra sobre tarjeta de credito
+//en caso que sea 2 crea los mismos para transferencia bancaria
+//en caso que no coincida ninguna no realiza ningun cambio
 selectMetodoPago.addEventListener("change", function () {
     let datosPago = "";
     let valor = document.getElementById("selectMetodoPago").value;
@@ -187,10 +203,14 @@ selectMetodoPago.addEventListener("change", function () {
             </div>
             `;
     }
-
+    //muestro la info en el bodoy del modal de metodo de pago
     document.getElementById("metodoPagoBody").innerHTML = datosPago;
 });
 
+//Validacion de datos de pago, si valor del select es 1 valida los datos de tarjeta que no esten vacios
+//si realiza con exito muestra mensaje de "success" de lo contrario informa de falta de datos
+//si es opcion 2 valida datos de trans. bancaria que no esten vacios, igual que la anterior
+// 
 function comprobarDatosDePago() {
     let valSelect = document.getElementById("selectMetodoPago").value;
     let msg = "Seleccione un metodo de pago";
@@ -230,5 +250,6 @@ function comprobarDatosDePago() {
             metodoPago.classList.add('text-danger');
         }
     }
+    //muestra el mensaje 
     document.getElementById("metodoPago").innerHTML = msg;
 }
